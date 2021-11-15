@@ -341,6 +341,14 @@ type PaymentIntentPaymentMethodOptionsWechatPayParams struct {
 	Client *string `form:"client"`
 }
 
+// PaymentIntentPaymentMethodOptionsPayByBank is the set of pay_by_bank options applied to a
+// PaymentIntent.
+type PaymentIntentPaymentMethodOptionsPayByBank struct {
+	Country             string `form:"country"`
+	Locale              string `form:"locale"`
+	StatementDescriptor string `form:"statement_descriptor"`
+}
+
 // PaymentIntentPaymentMethodOptionsParams represents the type-specific payment method options
 // applied to a PaymentIntent.
 type PaymentIntentPaymentMethodOptionsParams struct {
@@ -358,6 +366,7 @@ type PaymentIntentPaymentMethodOptionsParams struct {
 	SepaDebit        *PaymentIntentPaymentMethodOptionsSepaDebitParams        `form:"sepa_debit"`
 	Sofort           *PaymentIntentPaymentMethodOptionsSofortParams           `form:"sofort"`
 	WechatPay        *PaymentIntentPaymentMethodOptionsWechatPayParams        `form:"wechat_pay"`
+	PayByBank        *PaymentIntentPaymentMethodOptionsPayByBank              `form:"pay_by_bank"`
 }
 
 // PaymentIntentTransferDataParams is the set of parameters allowed for the transfer hash.
@@ -647,6 +656,7 @@ type PaymentIntent struct {
 	PaymentMethod             *PaymentMethod                     `json:"payment_method"`
 	PaymentMethodOptions      *PaymentIntentPaymentMethodOptions `json:"payment_method_options"`
 	PaymentMethodTypes        []string                           `json:"payment_method_types"`
+	PaymentMethodData         []string                           `json:"payment_method_types"`
 	ReceiptEmail              string                             `json:"receipt_email"`
 	Review                    *Review                            `json:"review"`
 	SetupFutureUsage          PaymentIntentSetupFutureUsage      `json:"setup_future_usage"`
